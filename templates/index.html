@@ -1,0 +1,390 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ===== HERO CON VIDEO DE FONDO ===== -->
+<section class="relative h-96 flex items-center justify-center overflow-hidden">
+
+    <video autoplay muted loop playsinline
+        class="absolute inset-0 w-full h-full object-cover">
+        <source src="{{ url_for('static', filename='videos/fondo1.mp4') }}" type="video/mp4">
+    </video>
+
+    <div class="absolute inset-0 bg-black/20"></div>
+
+    <div class="relative z-10 text-center">
+        <h1 data-i18n="bienvenido" class="text-6xl font-semibold text-white tracking-widest">
+            ¡Bienvenido a AAPHAL!
+        </h1>
+        <p data-i18n="subtitulo" class="text-white text-sm uppercase tracking-widest mt-2">
+            Asociación de Agricultores de Palto en Huamanpali - Alto Larán
+        </p>
+    </div>
+
+</section>
+
+<!-- ===== BIENVENIDA + VIDEO ===== -->
+<section class="py-16 px-8 bg-white">
+    <div class="max-w-6xl mx-auto flex items-center gap-12">
+
+        <!-- TEXTO BIENVENIDA -->
+        <div class="w-1/2 text-left">
+
+            <!-- LOGO -->
+            <div class="flex justify-center mb-6">
+                <img src="{{ url_for('static', filename='image/logos/logo3.png') }}" 
+                     alt="Logo"
+                     class="h-28 object-contain">
+            </div>
+
+            <p class="text-gray-700 text-base leading-relaxed text-justify">
+                Les damos la bienvenida a nuestra asociación de agricultores, donde el esfuerzo, la unión y la dedicación se transforman en productos de calidad. Nos especializamos en el cultivo de palta, promoviendo prácticas sostenibles y el desarrollo de nuestros productores en la provincia de Chincha.
+            </p>
+
+        </div>
+
+        <!-- VIDEO -->
+        <div class="w-1/2">
+            <div class="relative w-full" style="padding-bottom: 56.25%;">
+                <iframe 
+                    class="absolute top-0 left-0 w-full h-full rounded shadow-md"
+                    src="https://www.youtube.com/embed/sxzSaLjiEZE"
+                    title="Video institucional"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== ESTADISTICAS ===== -->
+<section class="relative py-20 flex flex-col items-center justify-center overflow-hidden">
+
+    <div class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('{{ url_for('static', filename='image/campo/campo8.png') }}');">
+    </div>
+
+    <div class="absolute inset-0 bg-[#556B2F] opacity-50"></div>
+
+    <div class="relative z-10 text-white text-center w-full max-w-5xl mx-auto px-8">
+
+        <div class="flex justify-around mb-12">
+            <div>
+                <p class="text-6xl font-bold" data-target="27">0</p>
+                <p data-i18n="asociados" class="text-xs uppercase tracking-widest mt-2">Nuestros Asociados</p>
+            </div>
+            <div>
+                <p class="text-6xl font-bold"><span data-target="60">0</span> TNL</p>
+                <p data-i18n="produccion_anual" class="text-xs uppercase tracking-widest mt-2">Producción de Palta Anual</p>
+            </div>
+            <div>
+                <p class="text-6xl font-bold"><span data-target="7200">0</span> KG</p>
+                <p data-i18n="produccion_ha" class="text-xs uppercase tracking-widest mt-2">Producción por Ha</p>
+            </div>
+        </div>
+
+        <div class="flex justify-around mb-12">
+            <div>
+                <p class="text-6xl font-bold" data-target="10">0</p>
+                <p data-i18n="paises" class="text-xs uppercase tracking-widest mt-2">Países Atendidos</p>
+            </div>
+            <div>
+                <p class="text-6xl font-bold" data-target="14">0</p>
+                <p data-i18n="exportacion" class="text-xs uppercase tracking-widest mt-2">Número de Exportación</p>
+            </div>
+        </div>
+
+        <a data-i18n="vermas" href="{{ url_for('nosotros') }}" 
+           class="border border-white text-white px-8 py-2 rounded-full hover:bg-white hover:text-[#556B2F] transition">
+            VER MÁS
+        </a>
+
+    </div>
+
+</section>
+
+<!-- SCRIPT CONTADOR -->
+<script>
+    const contadores = document.querySelectorAll('[data-target]');
+    contadores.forEach(contador => {
+        const target = parseInt(contador.getAttribute('data-target'));
+        let count = 0;
+        const step = Math.ceil(target / 100);
+        const interval = setInterval(() => {
+            count += step;
+            if (count >= target) {
+                contador.textContent = target;
+                clearInterval(interval);
+            } else {
+                contador.textContent = count;
+            }
+        }, 20);
+    });
+</script>
+
+<!-- ===== NUESTRO EQUIPO ===== -->
+<section class="bg-white py-20 text-center">
+
+    <!-- TÍTULO -->
+    <h2 class="text-2xl font-extrabold mb-10 text-[#556B2F] uppercase tracking-wider">
+        NUESTRO EQUIPO
+    </h2>
+
+    <!-- CONTENEDOR -->
+    <div class="relative max-w-5xl mx-auto flex items-center justify-center">
+
+        <!-- BOTÓN IZQUIERDA -->
+        <button onclick="prevSlide()"
+            class="absolute left-0 z-20 bg-[#556B2F] hover:bg-[#3d4f22] text-white px-4 py-2 rounded-full">
+            ◀
+        </button>
+
+        <!-- IMÁGENES -->
+        <div class="flex items-center gap-6">
+
+            <!-- IZQUIERDA -->
+            <img id="imgLeft"
+                class="w-64 h-44 object-cover opacity-60 scale-95 transition-all duration-500 rounded-lg shadow">
+
+            <!-- CENTRO -->
+            <img id="imgCenter"
+                class="w-96 h-56 object-cover scale-110 transition-all duration-500 rounded-lg shadow-lg">
+
+            <!-- DERECHA -->
+            <img id="imgRight"
+                class="w-64 h-44 object-cover opacity-60 scale-95 transition-all duration-500 rounded-lg shadow">
+
+        </div>
+
+        <!-- BOTÓN DERECHA -->
+        <button onclick="nextSlide()"
+            class="absolute right-0 z-20 bg-[#556B2F] hover:bg-[#3d4f22] text-white px-4 py-2 rounded-full">
+            ▶
+        </button>
+
+    </div>
+
+    <!-- TEXTO -->
+    <p class="text-gray-700 text-base mt-10 max-w-3xl mx-auto text-justify">
+    Detrás de cada palta hay un equipo de agricultores comprometidos que trabaja con esfuerzo, dedicación y responsabilidad en el campo, nuestra asociación se basa en el trabajo en equipo y la unión de todos sus miembros para lograr una producción de calidad, gracias al compromiso de nuestros asociados, fortalecemos nuestras prácticas agrícolas y contribuimos al desarrollo de nuestras familias y comunidad.
+    </p>
+
+</section>
+
+<!-- ===== SCRIPT ===== -->
+<script>
+const images = [
+    "{{ url_for('static', filename='image/oficina/imagennueva1.jpeg') }}",
+    "{{ url_for('static', filename='image/oficina/imagennueva2.jpeg') }}",
+    "{{ url_for('static', filename='image/oficina/imagennueva3.jpeg') }}",
+    "{{ url_for('static', filename='image/otros/exportacion1.jpeg') }}",
+    "{{ url_for('static', filename='image/otros/exportacion2.jpeg') }}"
+];
+
+let current = 0;
+
+function updateCarousel() {
+    const left = (current - 1 + images.length) % images.length;
+    const right = (current + 1) % images.length;
+
+    document.getElementById("imgLeft").src = images[left];
+    document.getElementById("imgCenter").src = images[current];
+    document.getElementById("imgRight").src = images[right];
+}
+
+function nextSlide() {
+    current = (current + 1) % images.length;
+    updateCarousel();
+}
+
+function prevSlide() {
+    current = (current - 1 + images.length) % images.length;
+    updateCarousel();
+}
+
+/* ARREGLO CLAVE */
+window.onload = function () {
+    updateCarousel();
+    setInterval(nextSlide, 4000);
+};
+</script>
+
+<!-- ===== NUESTROS PRODUCTOS ===== -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ===== MISIÓN Y VISIÓN ===== -->
+<section class="relative py-20 flex items-center justify-center overflow-hidden">
+
+    <div class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('{{ url_for('static', filename='image/oficina/capacitacion15.png') }}');">
+    </div>
+    <div class="absolute inset-0 bg-[#556B2F] opacity-50"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-8 text-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
+            <div>
+                <h3 data-i18n="mision" class="text-xl font-bold text-center mb-6">Misión</h3>
+                <p data-i18n="mision_texto" class="text-sm leading-relaxed text-justify">
+    Nuestra misión es promover el cultivo sostenible de paltas, apoyando a nuestros agricultores con recursos, educación y acceso a mercados, para mejorar sus vidas y contribuir al desarrollo económico de nuestras comunidades.
+</p>
+            </div>
+            <div>
+                <h3 data-i18n="vision" class="text-xl font-bold text-center mb-6">Visión</h3>
+                <p data-i18n="vision_texto" class="text-sm leading-relaxed text-justify">
+    Nuestra visión es ser líderes en la producción de paltas de alta calidad, reconocidos por nuestras prácticas agrícolas sostenibles y nuestro compromiso con el bienestar de nuestros agricultores y el medio ambiente.
+</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ===== VALORES ===== -->
+<section class="py-20 px-6 md:px-12 lg:px-24 bg-white">
+    <div class="max-w-6xl mx-auto flex items-center gap-16">
+
+        <div class="w-1/2 text-sm text-gray-800 space-y-8">
+            <div>
+                <p data-i18n="valor1_titulo" class="text-[#556B2F] font-bold">• Sostenibilidad</p>
+                <p data-i18n="valor1_texto" class="ml-6">
+                    Fomentamos prácticas agrícolas que protegen y preservan el medio ambiente.
+                </p>
+            </div>
+            <div>
+                <p data-i18n="valor2_titulo" class="text-[#556B2F] font-bold">• Calidad</p>
+                <p data-i18n="valor2_texto" class="ml-6">
+                    Nos comprometemos a producir paltas de la más alta calidad.
+                </p>
+            </div>
+            <div>
+                <p data-i18n="valor3_titulo" class="text-[#556B2F] font-bold">• Integridad</p>
+                <p data-i18n="valor3_texto" class="ml-6">
+                    Actuamos con honestidad y transparencia en todas nuestras actividades.
+                </p>
+            </div>
+            <div>
+                <p data-i18n="valor4_titulo" class="text-[#556B2F] font-bold">• Colaboración</p>
+                <p data-i18n="valor4_texto" class="ml-6">
+                    Trabajamos juntos para alcanzar objetivos comunes y apoyar a nuestros miembros.
+                </p>
+            </div>
+            <div>
+                <p data-i18n="valor5_titulo" class="text-[#556B2F] font-bold">• Innovación</p>
+                <p data-i18n="valor5_texto" class="ml-6">
+                    Buscamos constantemente nuevas formas de mejorar nuestras técnicas de cultivo y procesos.
+                </p>
+            </div>
+        </div>
+
+        <div class="w-1/2 text-center">
+            <h2 data-i18n="valores" class="text-2xl font-bold text-[#556B2F] mb-6">NUESTROS VALORES</h2>
+            <img src="{{ url_for('static', filename='image/otros/VALORES.png') }}" 
+                alt="Valores"
+                class="w-3/4 mx-auto rounded-lg shadow-md">
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="py-20 px-6 md:px-12 lg:px-24 bg-[#556B2F] text-white">
+    <div class="max-w-6xl mx-auto flex items-center gap-16">
+        <div class="w-2/3">
+            <h2 data-i18n="contacto" class="text-2xl mb-4">Estamos aqui para ayudarte</h2>
+            <p data-i18n="contacto_texto" class="text-sm mb-10 text-gray-200">
+    Contamos con un equipo de profesionales que pueden ayudarte a resolver consultas sobre nuestro servicio, puede enviarnos un mensaje directamente llenando el formulario a continuación.
+</p>
+            <form class="grid grid-cols-2 gap-10">
+                <div>
+                    <label data-i18n="nombre" class="text-sm">Tu nombre y apellido </label>
+                    <input type="text" oninput="soloLetras(this)"
+                        class="w-full bg-transparent border-b border-white outline-none py-2">
+                </div>
+                <div>
+                    <label data-i18n="correo" class="text-sm">Tu correo electronico</label>
+                    <input type="email" oninput="forzarMinuscula(this)"
+                        class="w-full bg-transparent border-b border-white outline-none py-2">
+                </div>
+                <div>
+                    <label data-i18n="telefono" class="text-sm">Tu telefono</label>
+                    <input type="text" oninput="soloNumeros(this)"
+                        class="w-full bg-transparent border-b border-white outline-none py-2">
+                </div>
+                <div>
+                    <label data-i18n="asunto" class="text-sm">Asunto</label>
+                    <input type="text"
+                        class="w-full bg-transparent border-b border-white outline-none py-2">
+                </div>
+            </form>
+            <div class="mt-10 flex justify-center">
+                <button data-i18n="enviar" class="border border-white px-10 py-2 rounded-full hover:bg-white hover:text-[#556B2F] transition">
+                    ENVIAR
+                </button>
+            </div>
+        </div>
+        <div class="w-1/3 flex justify-center">
+            <img src="{{ url_for('static', filename='image/productos/productoV5.png') }}" 
+                 alt="Contacto"
+                 class="w-64 h-96 object-cover rounded-md">
+        </div>
+    </div>
+</section>
+
+<!-- ===== UBICACIÓN ===== -->
+<section class="py-10 px-6 md:px-12 lg:px-24 bg-white">
+    <h2 data-i18n="ubicacion" class="text-2xl font-bold text-[#556B2F] mb-6 text-center">UBICACION</h2>
+    <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3897.123456789!2d-76.0327107!3d-13.458403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDI3JzMwLjIiUyA3NsKwMDEnNTcuOCJX!5e0!3m2!1ses!2spe!4v1234567890"
+        class="w-full h-[350px] md:h-[450px] lg:h-[500px] rounded-xl border-0"
+        allowfullscreen
+        loading="lazy">
+    </iframe>
+</section>
+
+<!-- ===== NUESTRAS REDES SOCIALES ===== -->
+<section class="py-8 bg-white text-center">
+    <h2 data-i18n="redes" class="text-2xl font-bold text-[#556B2F] mb-14 tracking-wide">
+        Nuestras redes sociales
+    </h2>
+    <div class="flex justify-center gap-28 flex-wrap">
+        <a href="#" class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/facebook.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.instagram.com/aaphalperu/?hl=es" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/instagram.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.tiktok.com/@aaphalperu" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/tiktok.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.youtube.com/@Asociaci%C3%B3ndeAgricultoresenHuam" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/youtube.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+    </div>
+</section>
+
+{% endblock %}

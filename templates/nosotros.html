@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- ===== HERO CON VIDEO DE FONDO ===== -->
+<section class="relative h-96 flex items-center justify-center overflow-hidden">
+
+    <video autoplay muted loop playsinline
+        class="absolute inset-0 w-full h-full object-cover">
+        <source src="{{ url_for('static', filename='videos/fondo1.mp4') }}" type="video/mp4">
+    </video>
+
+    <div class="absolute inset-0 bg-black/20"></div>
+
+    <div class="relative z-10 text-center">
+        <h1 data-i18n="bienvenido" class="text-6xl font-semibold text-white tracking-widest">
+            NOSOTROS
+        </p>
+    </div>
+
+</section>
+
+<!-- ===== QUIENES SOMOS ===== -->
+<section class="py-16 px-8 bg-white">
+    <div class="max-w-6xl mx-auto flex items-center gap-12">
+
+        <div class="w-1/2">
+            <img src="{{ url_for('static', filename='image/otros/noticias4.png') }}" 
+                 alt="Quienes Somos"
+                 class="w-full shadow-md">
+        </div>
+
+        <div class="w-1/2 text-center">
+            <h2 data-i18n="quienes" class="text-2xl font-bold text-[#556B2F] uppercase tracking-wide mb-6">
+                Quiénes Somos
+            </h2>
+            <p data-i18n="quienes_texto" class="text-gray-700 text-sm leading-relaxed text-justify">
+    Somos una asociación de agricultores dedicada al cultivo de palta, ubicada en Huamanpali, en el distrito de Alto Larán, provincia de Chincha.
+    <br><br>
+    Nuestra organización nace con el propósito de unir a los productores de la zona, permitiéndonos trabajar de manera conjunta para enfrentar los desafíos del sector agrícola, mejorar nuestras técnicas de cultivo y fortalecer nuestra presencia en el mercado. A lo largo de los años, hemos venido creciendo de forma constante, implementando prácticas sostenibles que cuidan el medio ambiente, optimizando nuestros procesos productivos y garantizando la calidad de nuestras paltas. Creemos firmemente en el trabajo en equipo, la innovación y el compromiso como pilares fundamentales para el desarrollo de nuestros agricultores y el bienestar de sus familias.
+    <br><br>
+    Hoy en día, seguimos avanzando con una visión clara: consolidarnos como una asociación competitiva, responsable y reconocida por la excelencia de nuestros productos, tanto a nivel nacional como internacional.
+</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== NUESTRA HISTORIA ===== -->
+<section class="py-16 px-8 bg-white">
+    <div class="max-w-6xl mx-auto flex items-center gap-12">
+        <div class="w-1/2 text-left">
+
+            <h2 class="text-2xl font-bold text-[#556B2F] uppercase tracking-wide mb-6 text-center">
+                Nuestra Historia
+            </h2>
+
+            <p class="text-gray-700 text-sm leading-relaxed text-justify">
+                Nuestra historia comienza hace más de una década, cuando un grupo de agricultores visionarios de Chincha, en Alto Larán, decidió unirse para enfrentar los desafíos del cultivo de paltas, como la falta de acceso a mercados, recursos limitados y técnicas tradicionales poco eficientes. Con esfuerzo, compromiso y trabajo en equipo, sentaron las bases de lo que hoy es una asociación sólida y organizada.
+                <br><br>
+                A lo largo de los años, hemos crecido de manera constante, incorporando prácticas agrícolas sostenibles que cuidan el suelo y el agua, así como tecnologías innovadoras que mejoran la producción y garantizan altos estándares de calidad. Este proceso no solo nos ha permitido aumentar nuestra competitividad, sino también abrirnos camino en mercados de exportación.
+                <br><br>
+                Hoy en día, nuestra asociación es un referente en la industria de la palta, reconocida por la excelencia de nuestros productos y por nuestro firme compromiso con el bienestar de nuestros agricultores, sus familias y el medio ambiente. Seguimos trabajando con la misma visión que nos unió desde el inicio: crecer juntos, de manera responsable y sostenible.
+            </p>
+        </div>
+        <div class="w-1/2">
+            <img src="{{ url_for('static', filename='img/campo/quienes_somos.jpg') }}" 
+                 alt="Nuestra Historia"
+                 class="w-full rounded-lg shadow-md">
+        </div>
+    </div>
+</section>
+
+<!-- ===== NUESTROS ASOCIADOS ===== -->
+<section class="bg-[#556B2F] py-16 px-8 text-center mt-20">
+
+    <h2 class="text-white text-xl font-semibold tracking-widest mb-10">
+        NUESTROS ASOCIADOS
+    </h2>
+
+    <div class="max-w-4xl mx-auto mt-12 relative">
+
+        <!-- BOTÓN IZQUIERDA -->
+        <button onclick="anteriorImagen()"
+            class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white px-3 py-2 rounded-full">
+            ◀
+        </button>
+
+        <!-- IMAGEN -->
+        <img id="sliderAsociados"
+            src="{{ url_for('static', filename='image/otros/noticias1.png') }}"
+            class="w-full h-72 object-cover mx-auto rounded-lg shadow-md">
+
+        <!-- BOTÓN DERECHA -->
+        <button onclick="siguienteImagen()"
+            class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 text-white px-3 py-2 rounded-full">
+            ▶
+        </button>
+
+    </div>
+
+    <p class="text-white text-sm mt-10 max-w-xl mx-auto">
+        Actualmente nuestra asociación está conformada por agricultores de la zona de Huamanpali y alrededores.
+    </p>
+
+</section>
+
+<!-- ===== NUESTRAS REDES SOCIALES ===== -->
+<section class="py-8 bg-white text-center">
+    <h2 data-i18n="redes" class="text-2xl font-bold text-[#556B2F] mb-14 tracking-wide">
+        Nuestras redes sociales
+    </h2>
+    <div class="flex justify-center gap-28 flex-wrap">
+        <a href="#" class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/facebook.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.instagram.com/aaphalperu/?hl=es" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/instagram.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.tiktok.com/@aaphalperu" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/tiktok.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">AAPHALPERU</p>
+        </a>
+        <a href="https://www.youtube.com/@Asociaci%C3%B3ndeAgricultoresenHuam" target="_blank"
+           class="flex flex-col items-center group">
+            <img src="{{ url_for('static', filename='icons/youtube.png') }}" 
+                 class="w-10 h-10 group-hover:scale-110 transition drop-shadow-lg">
+            <p class="text-xs mt-4 text-[#3f4f2a] tracking-widest">\AAPHALPERU</p>
+        </a>
+    </div>
+</section>
+
+{% endblock %}
